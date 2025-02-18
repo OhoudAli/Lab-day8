@@ -165,6 +165,119 @@ public class Main {
 //
 //    }
 
+
+//******************************************************************************************************
+//        5. Write a menu driven Java program with following option:
+//        1. Accept elements of an array
+//        2. Display elements of an array
+//        3. Search the element within array
+//        4. Sort the array
+//        5. To Stop the size of the array should be
+//        entered by the user.
+
+
+//        int array_size = 0;
+//        int [] array = null;
+//        int number ;
+//        int search_number;
+//        boolean found_SearchNumber = false;
+//        int choose;
+//        do {
+//            System.out.println(" \n" +
+//                    "Choose number from 1 to 4 or 5 to exit:\n" +
+//                    "    Enter [1] Accept elements of an array\n" +
+//                    "    Enter [2] Display elements of an array\n" +
+//                    "    Enter [3] Search the element within array\n" +
+//                    "    Enter [4] Sort the array\n" +
+//                    "    Enter [5] To Stop .");
+//
+//            choose = input.nextInt();
+//            switch (choose) {
+//                case 1:
+//                    if (array == null) {
+//                        System.out.println("Enter the size of array you want: ");
+//                        array_size = input.nextInt();
+//                        array = new int[array_size];
+//                        System.out.println("Enter the elements of array you want:  ");
+//                        for (int i = 0; i < array_size; i++) {
+//                            System.out.println("Enter number " + (i + 1));
+//                            number = input.nextInt();
+//                            array[i] = number;
+//                        }
+//                    }else {System.out.println("You already create the array :)");}
+//                    break;
+//
+//                case 2:
+//                    if (array == null){
+//                        System.out.println("The array is empty try to full it first.");
+//                    }else {
+//                        System.out.println("The array you made : ");
+//                        for (int i = 0; i < array_size; i++) {
+//                            System.out.print(array[i] + " ");
+//                        }
+//                        System.out.println();
+//                    }
+//                    break;
+//
+//                case 3:
+//                    if(array== null){
+//                        System.out.println("The array is empty try to full it first to search.");
+//                    }else {
+//                        System.out.println("Enter number to search for it in the array :");
+//                        search_number = input.nextInt();
+//                        for (int i = 0; i < array_size; i++) {
+//                            if (array[i] == search_number) {
+//                                found_SearchNumber = true;
+//                                break;
+//                            }
+//                        }
+//                        if (found_SearchNumber) {
+//                            System.out.println(search_number + " you search for is in the array");
+//                        } else
+//                            System.out.println(search_number + " search for is not in the array");
+//                    }
+//                    break;
+//
+//                case 4:
+//                    if(array == null){
+//                        System.out.println("The array is empty try to full it first to sort it.");
+//                    }else {
+//                        System.out.println("The sorted array is : ");
+//                        SortTheArray(array);
+//                    }
+//                    break;
+//
+//                case 5:
+//                    System.out.println("See You Again !!");
+//                    break;
+//                default:
+//                    System.out.println("choose number from 1-5.");
+//            }
+//
+//
+//        }while (choose != 5) ;
+//    }
+//    public static void SortTheArray(int [] arr){
+//        int sized = arr.length;
+//        int temp;
+//        if (arr != null) {
+//            for (int i = 0; i < sized; i++) {
+//                for (int j = i + 1; j < sized; j++) {
+//                    if (arr[i] > arr[j]) {
+//                        temp = arr[i];
+//                        arr[i] = arr[j];
+//                        arr[j] = temp;
+//                    }
+//                }
+//            }
+//            System.out.println(Arrays.toString(arr));
+//        }else
+//            System.out.println("the array is null!!");
+//
+//    }
+//}
+
+
         //**************************************************************************************
 //        6. Create a method that generates a random number within a given range. Allow the user to
 //        specify the range and call the method to display random numbers.
@@ -222,6 +335,65 @@ public class Main {
 //        Example:
 //        Enter a password: 3456 Expected Output:
 //        Password is weak.
+
+        System.out.print("Enter password : ");
+        String pass = input.nextLine();
+        int totalScore=0;
+
+        totalScore= totalScore + checkLength(pass);
+
+        totalScore=totalScore+ checkUpperCaseLowerCase(pass);
+
+        totalScore= totalScore+ checkSpecialCharacters(pass);
+        if(totalScore>=8){
+            System.out.println("Password is Strong");
+        }
+        else if (totalScore >= 5){
+            System.out.println("Password is moderately strong");
+        }else System.out.println("Password is weak");
+
+    }
+    public static int checkLength(String pass ){
+        int score=0;
+        if (pass.length()>= 8){
+            score +=3;
+        }else if(pass.length()>=5){
+            score+=2;
+        }else score=0;
+
+        return score;
+
+    }
+    public static int checkSpecialCharacters(String pass){
+        int score =0;
+        for (int i = 0; i <pass.length() ; i++) {
+            if(!Character.isLetterOrDigit(pass.charAt(i))) {
+                score+=2;
+                break;
+            }
+        }
+        return score;
+
+    }
+    public static int checkUpperCaseLowerCase(String pass){
+        int score =0;
+        int countUpper=0;
+        int countLower = 0;
+
+        for (int i = 0; i < pass.length(); i++) {
+            if(Character.isLowerCase(pass.charAt(i))){
+              countLower++;
+            }
+            if ( Character.isUpperCase(pass.charAt(i))){
+               countUpper++;
+            }
+        }
+        if(countUpper>=1 && countLower>=1){
+            score = 3;
+        }
+        return score;
+    }
+}
 
 //***************************************************************************************
 //        8. Create a method that generates the Fibonacci sequence up to a specified number of terms.
